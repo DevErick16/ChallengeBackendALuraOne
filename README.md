@@ -28,4 +28,4 @@ La aplicacion cuenta con validaciones(Excepciones) para manejar los casos y prop
 ![Vista conversion de temperatura](images/validaciones.png)
 ## Autor
 *"Erick Francisco Alvarez Mora"*
-![Logo](src/com.oracle.images/svg.png)
+![Logo](src/com.oracle.images/svg1.png)
