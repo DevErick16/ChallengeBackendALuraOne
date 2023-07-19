@@ -6,6 +6,7 @@ package com.oracle.vistas;
 
 import static com.oracle.modelo.ConversorLongitudes.obtenerDatos;
 import static com.oracle.modelo.ConversorLongitudes.realizarConversion;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Administrator
@@ -250,7 +251,12 @@ public class FormCambioLongitud extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
-        obtenerDatos(this.cbDatoSeleccion, this.cbDatoConversion, this.txtLongitud, this.lblResultado);
+        try {
+             obtenerDatos(this.cbDatoSeleccion, this.cbDatoConversion, this.txtLongitud, this.lblResultado);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingresa una longitud");
+        }
+       
         
     }//GEN-LAST:event_btnConvertirActionPerformed
 

@@ -5,6 +5,7 @@
 package com.oracle.vistas;
 
 import static com.oracle.modelo.ConversorTemperatura.obtenerDatos;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -244,8 +245,12 @@ public class FormCambioTemperatura extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
-        double temperatura = Double.parseDouble(this.txtTemperatura.getText().toString());
-        obtenerDatos(this.cmbSeleccion, this.cmbConversion, this.txtTemperatura, this.lblResultado);
+        try {
+             obtenerDatos(this.cmbSeleccion, this.cmbConversion, this.txtTemperatura, this.lblResultado);
+        } catch (NumberFormatException e) {
+             JOptionPane.showMessageDialog(null, "Ingresa una temperatura");
+        }
+       
     }//GEN-LAST:event_btnConvertirActionPerformed
 
     /**

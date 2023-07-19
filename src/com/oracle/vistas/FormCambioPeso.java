@@ -5,6 +5,7 @@
 package com.oracle.vistas;
 
 import static com.oracle.modelo.ConversorPeso.obtenerDatos;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -248,7 +249,12 @@ public class FormCambioPeso extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
-        obtenerDatos(this.cbDatoSeleccion, this.cbDatoConversion, this.txtPeso, this.lblresultado);
+        try {
+            obtenerDatos(this.cbDatoSeleccion, this.cbDatoConversion, this.txtPeso, this.lblresultado);
+        } catch (NumberFormatException e) {
+             JOptionPane.showMessageDialog(null, "Ingresa un peso");
+        }
+
     }//GEN-LAST:event_btnConvertirActionPerformed
 
     /**
