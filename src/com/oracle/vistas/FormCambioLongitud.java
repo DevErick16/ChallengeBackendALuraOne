@@ -5,7 +5,7 @@
 package com.oracle.vistas;
 
 import static com.oracle.modelo.ConversorLongitudes.obtenerDatos;
-
+import static com.oracle.modelo.ConversorLongitudes.realizarConversion;
 /**
  *
  * @author Administrator
@@ -47,6 +47,7 @@ public class FormCambioLongitud extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(400, 200));
+        setName("FormCambioLongitud"); // NOI18N
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(24, 39, 56));
@@ -250,6 +251,7 @@ public class FormCambioLongitud extends javax.swing.JFrame {
 
     private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
         obtenerDatos(this.cbDatoSeleccion, this.cbDatoConversion, this.txtLongitud, this.lblResultado);
+        
     }//GEN-LAST:event_btnConvertirActionPerformed
 
     /**

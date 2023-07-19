@@ -4,10 +4,12 @@
  */
 package com.oracle.modelo;
 
+import static com.oracle.modelo.ConversionUtil.mostrarResultado;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 
 public class ConversorMoneda {
@@ -45,27 +47,26 @@ public class ConversorMoneda {
         //lista Yenes
         listaConversiones.put("YenesPeso", 0.12);
         listaConversiones.put("YenesEuro", 0.0064);
-        listaConversiones.put("LinbraLibra", 0.0055);
+        listaConversiones.put("YenesLibra", 0.0055);
         listaConversiones.put("YenesYenes", 1.0);
-        listaConversiones.put("LibraDolar", 0.0072);
+        listaConversiones.put("YenesDolar", 0.0072);
         
     }
-    public static void obtenerDatos(JComboBox<String> monedaSeleccion, JComboBox<String> monedaConversion, Double monto, JLabel labelResultado){
+    public static void obtenerDatos(JComboBox<String> monedaSeleccion, JComboBox<String> monedaConversion, JTextField txtMonto, JLabel labelResultado){
+        Double montoUsuario = Double.parseDouble(txtMonto.getText().toString());
         String monedaSeleccionada = monedaSeleccion.getSelectedItem().toString();
         String monedaDeConversion = monedaConversion.getSelectedItem().toString();
-        
-        double resultado = realizarCambio(monedaSeleccionada, monedaDeConversion, monto);
+        double resultado = realizarCambio(monedaSeleccionada, monedaDeConversion, montoUsuario);
         mostrarResultado(resultado, labelResultado);
+        
     }
-    public static void mostrarResultado (Double resultado, JLabel labelResultado){
-        labelResultado.setText("El cambio de la moneda es: " + resultado);
-    }
-    
-    public static Double realizarCambio(String monedaSeleccionada, String monedaDeConversion, Double monto){
+
+    public static Double realizarCambio(String monedaSeleccionada, String monedaDeConversion, Double montoUsuario){
         String key= monedaSeleccionada + monedaDeConversion;
+        
         if (listaConversiones.containsKey(key)) {
             double datoConversion = listaConversiones.get(key);
-            return monto * datoConversion;
+            return datoConversion * montoUsuario;
         }
         return 0.0;
         

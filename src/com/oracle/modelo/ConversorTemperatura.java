@@ -4,6 +4,7 @@
  */
 package com.oracle.modelo;
 
+import static com.oracle.modelo.ConversionUtil.mostrarResultado;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JComboBox;
@@ -23,9 +24,7 @@ public class ConversorTemperatura {
         mostrarResultado(resultado, labelResultado);
     }
     
-    public static void mostrarResultado(Double resultado, JLabel labelResultado) {
-        labelResultado.setText("El resultado de la conversión es: " + resultado);
-    }
+  
     
     public static Double realizarConversion(String datoSeleccion, String datoConversion, Double datoTemperatura) {
         Double temperaturaConvertida = 0.0;

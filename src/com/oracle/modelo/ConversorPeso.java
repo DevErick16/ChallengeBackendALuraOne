@@ -4,6 +4,7 @@
  */
 package com.oracle.modelo;
 
+import static com.oracle.modelo.ConversionUtil.mostrarResultado;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JComboBox;
@@ -52,9 +53,7 @@ public class ConversorPeso {
         Double resultadoConversion = realizarConversion(datoSeleccionado, datoConversion, datoPeso);
         mostrarResultado(resultadoConversion, labelResultado);
     }
-    public static void mostrarResultado(Double resultado, JLabel labelResultado){
-        labelResultado.setText("el resultado de la conversion es: "+ resultado);
-    }
+   
     public static Double realizarConversion(String datoSeleccionado, String datoConversion, Double peso){
         String key = datoSeleccionado + datoConversion;
         if(listaConversionesPeso.containsKey(key)){

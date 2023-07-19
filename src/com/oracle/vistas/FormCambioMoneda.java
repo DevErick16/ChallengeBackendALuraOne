@@ -4,7 +4,6 @@
  */
 package com.oracle.vistas;
 
-import com.oracle.modelo.ConversorMoneda;
 import static com.oracle.modelo.ConversorMoneda.obtenerDatos;
 import javax.swing.JOptionPane;
 
@@ -51,6 +50,7 @@ public class FormCambioMoneda extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(400, 220));
+        setName("FormCambioMoneda"); // NOI18N
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(24, 39, 56));
@@ -259,10 +259,10 @@ public class FormCambioMoneda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
-        ConversorMoneda moneda = new ConversorMoneda();
+
         try {
-            double monto = Double.parseDouble(this.txtMonto.getText().toString());
-        obtenerDatos(this.cbSeleccionMoneda, this.cbConversionMoneda, monto, this.lblRes);
+        obtenerDatos(this.cbSeleccionMoneda, this.cbConversionMoneda, this.txtMonto, this.lblRes);
+        
         } catch (NumberFormatException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Ingresa un monto");

@@ -4,6 +4,9 @@
  */
 package com.oracle.modelo;
 
+
+import static com.oracle.modelo.ConversionUtil.mostrarResultado;
+
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JComboBox;
@@ -48,23 +51,18 @@ public class ConversorLongitudes {
         listaConversionLongitud.put("PiesMilla", 0.000189394);
         listaConversionLongitud.put("PiesPies", 1.0);
     }
-    
     public static void obtenerDatos(JComboBox<String> cbdatoSeleccion, JComboBox<String> cbdatoconversion, JTextField txtLongitud, JLabel labelResultado){
-        Double datoLongitud = Double.parseDouble(txtLongitud.getText().toString());
-        String datoSeleccion = cbdatoSeleccion.getSelectedItem().toString();
-        String datoConversion = cbdatoconversion.getSelectedItem().toString();
-        Double resultado = realizarConversion(datoSeleccion, datoConversion, datoLongitud);
-        mostrarResultado(resultado, labelResultado);
+        Double datoUsuario = Double.parseDouble(txtLongitud.getText().toString());
+            String datoSeleccion = cbdatoSeleccion.getSelectedItem().toString();
+            String datoConversion = cbdatoconversion.getSelectedItem().toString();
+            Double resultado = realizarConversion(datoSeleccion, datoConversion, datoUsuario);
+            mostrarResultado(resultado, labelResultado);
     }
-    public static void mostrarResultado(Double resultado, JLabel labelResultado){
-        labelResultado.setText("El resultado de la conversion es: " + resultado);
-    }
-    
-    public static Double realizarConversion(String datoSeleccion, String datoConversion, Double datoLongitud){
+    public static Double realizarConversion(String datoSeleccion, String datoConversion, Double datoUsuario){
         String key = datoSeleccion + datoConversion;
         if(listaConversionLongitud.containsKey(key)){
             Double conversion = listaConversionLongitud.get(key);
-            return conversion * datoLongitud;
+            return conversion * datoUsuario;
         }
        return 0.0;
     }
