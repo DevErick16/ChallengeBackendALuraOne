@@ -4,6 +4,8 @@
  */
 package com.oracle.vistas;
 
+import static com.oracle.modelo.ConversorPeso.obtenerDatos;
+
 /**
  *
  * @author Administrator
@@ -35,13 +37,13 @@ public class FormCambioPeso extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtPeso = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbDatoSeleccion = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        cbDatoConversion = new javax.swing.JComboBox<>();
+        lblresultado = new javax.swing.JLabel();
+        btnConvertir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(400, 200));
@@ -111,38 +113,42 @@ public class FormCambioPeso extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Ingresa el peso:");
 
-        jTextField1.setBackground(new java.awt.Color(24, 39, 56));
-        jTextField1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtPeso.setBackground(new java.awt.Color(24, 39, 56));
+        txtPeso.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        txtPeso.setForeground(new java.awt.Color(255, 255, 255));
+        txtPeso.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Tipo de cambio de:");
 
-        jComboBox1.setBackground(new java.awt.Color(24, 39, 56));
-        jComboBox1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilogramo - (kg)", "gramo - (g)", "miligramo - (mg)", "tonelada - (t)" }));
+        cbDatoSeleccion.setBackground(new java.awt.Color(24, 39, 56));
+        cbDatoSeleccion.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        cbDatoSeleccion.setForeground(new java.awt.Color(255, 255, 255));
+        cbDatoSeleccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "kilogramo", "gramo", "libra", "tonelada" }));
 
         jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("a");
 
-        jComboBox2.setBackground(new java.awt.Color(24, 39, 56));
-        jComboBox2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "gramo - (g)", "miligramo - (mg)", "tonelada - (t)", "Kilogramo - (kg)" }));
+        cbDatoConversion.setBackground(new java.awt.Color(24, 39, 56));
+        cbDatoConversion.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        cbDatoConversion.setForeground(new java.awt.Color(255, 255, 255));
+        cbDatoConversion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "gramo", "libra", "tonelada", "kilogramo" }));
 
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Resultado:");
+        lblresultado.setBackground(new java.awt.Color(255, 255, 255));
+        lblresultado.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
+        lblresultado.setForeground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setBackground(new java.awt.Color(24, 39, 56));
-        jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Convertir");
+        btnConvertir.setBackground(new java.awt.Color(24, 39, 56));
+        btnConvertir.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        btnConvertir.setForeground(new java.awt.Color(255, 255, 255));
+        btnConvertir.setText("Convertir");
+        btnConvertir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConvertirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -150,7 +156,7 @@ public class FormCambioPeso extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnConvertir, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(241, 241, 241))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,20 +164,21 @@ public class FormCambioPeso extends javax.swing.JFrame {
                         .addGap(152, 152, 152)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbDatoSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbDatoConversion, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(76, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(241, 241, 241)
+                .addComponent(lblresultado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,17 +186,17 @@ public class FormCambioPeso extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbDatoSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbDatoConversion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
-                .addComponent(jButton1)
+                .addComponent(btnConvertir)
                 .addGap(58, 58, 58)
-                .addComponent(jLabel9)
+                .addComponent(lblresultado)
                 .addContainerGap(130, Short.MAX_VALUE))
         );
 
@@ -215,7 +222,7 @@ public class FormCambioPeso extends javax.swing.JFrame {
                 .addComponent(btnRegresar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 109, Short.MAX_VALUE))
+                .addGap(0, 138, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -239,6 +246,10 @@ public class FormCambioPeso extends javax.swing.JFrame {
         this.setVisible(false);
         formMenu.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
+        obtenerDatos(this.cbDatoSeleccion, this.cbDatoConversion, this.txtPeso, this.lblresultado);
+    }//GEN-LAST:event_btnConvertirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,10 +287,10 @@ public class FormCambioPeso extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConvertir;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> cbDatoConversion;
+    private javax.swing.JComboBox<String> cbDatoSeleccion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -287,10 +298,10 @@ public class FormCambioPeso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblresultado;
+    private javax.swing.JTextField txtPeso;
     // End of variables declaration//GEN-END:variables
 }
