@@ -4,7 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/Challenge/src/com/oracle/vistas/FormCambioTemperatura.java</file>
-            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/Challenge/src/com/oracle/modelo/ConversorTemperatura.java</file>
+            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/Challenge/src/com/oracle/vistas/FormMenu.java</file>
+            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/Challenge/src/com/oracle/vistas/FormCambioMoneda.java</file>
+            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/Challenge/src/com/oracle/vistas/FormCambioLongitud.java</file>
+            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/Challenge/src/com/oracle/vistas/FormCambioPeso.java</file>
         </group>
     </open-files>
 </project-private>
