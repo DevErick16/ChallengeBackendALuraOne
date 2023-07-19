@@ -8,52 +8,94 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Administrator
  */
 public class ConversorTemperatura {
-    private static Map<String, Double> unidadesDeTemperatura = new HashMap<>();
-    static{
-        //lista Celsius
-        unidadesDeTemperatura.put("CelsiusFahrenheit", 1.8);
-        unidadesDeTemperatura.put("CelsiusKelvin", 1.0);
-       
-        
-        //lista Fahrenheit
-        unidadesDeTemperatura.put("FahrenheitCelsius", 0.5555555555555556);
-        unidadesDeTemperatura.put("FahrenheitKelvin", 0.5555555555555556);
-        
-        
-         //listaKelvin
-        unidadesDeTemperatura.put("KelvinCelsius", 1.0);
-        unidadesDeTemperatura.put("KelvinFahrenheit", 1.8);
-       
-    }
-    public static void obtenerDatos (JComboBox<String> cajaSeleccion, JComboBox<String> cajaConversion, double temperatura, JLabel labelResultado){
-        String datoSeleccion = cajaSeleccion.getSelectedItem().toString();
-        String datoConversion= cajaConversion.getSelectedItem().toString();
-        
-        double resultadoConversion = realizarConversion(datoSeleccion,datoConversion, temperatura);
-        mostrarResultado(resultadoConversion, labelResultado);
-        
-    }
-    public static void mostrarResultado(Double resultado, JLabel labelResultado){
-        labelResultado.setText("El resultado de la conversion es: " + resultado);
+    public static void obtenerDatos(JComboBox<String> cbDatoSeleccion, JComboBox<String> cbDatoConversion, JTextField txtTemperatura, JLabel labelResultado) {
+        Double datoTemperatura = Double.parseDouble(txtTemperatura.getText());
+        String datoSeleccion = cbDatoSeleccion.getSelectedItem().toString();
+        String datoConversion = cbDatoConversion.getSelectedItem().toString();
+        Double resultado = realizarConversion(datoSeleccion, datoConversion, datoTemperatura);
+        mostrarResultado(resultado, labelResultado);
     }
     
-    public static double realizarConversion(String datoSeleccion, String datoConversion, Double temperatura){
-        String key = datoSeleccion + datoConversion;
-        System.out.println(key);
-        if(unidadesDeTemperatura.containsKey(key)){
-            double datoTemperatura = unidadesDeTemperatura.get(key);
-            System.out.println(datoTemperatura);
-            System.out.println(temperatura);
-            
-            return temperatura * datoTemperatura;
+    public static void mostrarResultado(Double resultado, JLabel labelResultado) {
+        labelResultado.setText("El resultado de la conversión es: " + resultado);
+    }
+    
+    public static Double realizarConversion(String datoSeleccion, String datoConversion, Double datoTemperatura) {
+        Double temperaturaConvertida = 0.0;
+        
+        switch (datoSeleccion) {
+            case "Celsius":
+                switch (datoConversion) {
+                    case "Celsius":
+                        temperaturaConvertida = datoTemperatura;
+                        break;
+                    case "Fahrenheit":
+                        temperaturaConvertida = celsiusAFahrenheit(datoTemperatura);
+                        break;
+                    case "Kelvin":
+                        temperaturaConvertida = celsiusAKelvin(datoTemperatura);
+                        break;
+                }
+                break;
+            case "Fahrenheit":
+                switch (datoConversion) {
+                    case "Celsius":
+                        temperaturaConvertida = fahrenheitACelsius(datoTemperatura);
+                        break;
+                    case "Fahrenheit":
+                        temperaturaConvertida = datoTemperatura;
+                        break;
+                    case "Kelvin":
+                        temperaturaConvertida = fahrenheitAKelvin(datoTemperatura);
+                        break;
+                }
+                break;
+            case "Kelvin":
+                switch (datoConversion) {
+                    case "Celsius":
+                        temperaturaConvertida = kelvinACelsius(datoTemperatura);
+                        break;
+                    case "Fahrenheit":
+                        temperaturaConvertida = kelvinAFahrenheit(datoTemperatura);
+                        break;
+                    case "Kelvin":
+                        temperaturaConvertida = datoTemperatura;
+                        break;
+                }
+                break;
         }
-        return 0.0;
+        
+        return temperaturaConvertida;
     }
     
+    private static Double celsiusAFahrenheit(Double celsius) {
+        return (celsius * 9 / 5) + 32;
+    }
+    
+    private static Double celsiusAKelvin(Double celsius) {
+        return celsius + 273.15;
+    }
+    
+    private static Double fahrenheitACelsius(Double fahrenheit) {
+        return (fahrenheit - 32) * 5 / 9;
+    }
+    
+    private static Double fahrenheitAKelvin(Double fahrenheit) {
+        return (fahrenheit + 459.67) * 5 / 9;
+    }
+    
+    private static Double kelvinACelsius(Double kelvin) {
+        return kelvin - 273.15;
+    }
+    
+    private static Double kelvinAFahrenheit(Double kelvin) {
+        return kelvin * 9 / 5 - 459.67;
+    }
 }

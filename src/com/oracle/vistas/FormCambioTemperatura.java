@@ -245,7 +245,7 @@ public class FormCambioTemperatura extends javax.swing.JFrame {
 
     private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
         double temperatura = Double.parseDouble(this.txtTemperatura.getText().toString());
-        obtenerDatos(this.cmbSeleccion, this.cmbConversion, temperatura, this.lblResultado);
+        obtenerDatos(this.cmbSeleccion, this.cmbConversion, this.txtTemperatura, this.lblResultado);
     }//GEN-LAST:event_btnConvertirActionPerformed
 
     /**
